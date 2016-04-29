@@ -1,0 +1,37 @@
+﻿@model IEnumerable<PolleySport.Models.CategoryModel>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+      
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                @foreach (var category in Model)
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@category.CategoryName <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            @foreach (var subCategory in category.SubCategories)
+                            {
+                                <li>
+                                    @Html.ActionLink(subCategory.SubCategoryName, 
+                                        "Browse", "Store", 
+                                        new { SubGenre = subCategory.SubCategoryName }, null)
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

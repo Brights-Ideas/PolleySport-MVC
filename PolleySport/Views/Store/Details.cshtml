@@ -1,0 +1,80 @@
+﻿@using System.Web.UI.WebControls
+@model PolleySport.Models.ProductModel
+
+@{
+    ViewBag.Title = "Product - " + Model.Name;
+
+    var listItems = new List<ListItem>
+    {
+        new ListItem { Text = "£2", Value="2.00M" },
+        new ListItem { Text = "£5", Value="5.00M" },
+        new ListItem { Text = "£1.75", Value="1.75M" },
+        new ListItem { Text = "£1.72", Value="1.72M" },
+        new ListItem { Text = "£0.59", Value="0.59M" }
+    };
+    
+}
+
+    
+<h2>@Model.Name</h2>
+
+<p>
+    <img alt="@Model.Name" src="@Model.ImageURL" />
+</p>
+@*@using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post, new { id = Model.AlbumId, variationId =  }))
+{
+    *@<div id="album-details">
+        <p>
+            <em>Genre:</em>
+            @*Model.Genre.Name*@
+            @*Html.DropDownListFor(m => m.Price, new SelectList(Model.Variations, "VariationId", "Text"), new { id ="ddlVariations"})*@
+            @Html.DropDownList("-- Insert Money --",
+                new SelectList(listItems, "Value", "Text"),
+                new {@id = "ddlVariations", @class = "form-control"})
+            <input type="hidden" name="selectedValue" id="selectedValue" value="unassigned"/>
+        </p>
+        <p>
+            <em>Artist:</em>
+            @Model.Name
+        </p>
+        <div id="price">
+            <h2>@String.Format("{0:F}", Model.Price) <small class="text-muted">Incl.Tax</small></h2>
+            <em>Price:</em>
+
+        </div>
+        <p class="button">
+            @*   @Html.ActionLink("Add to cart", "AddToCart", 
+        "ShoppingCart", new { id = Model.AlbumId, variationId =  @Html.Hidden("selectedValue")}, "")*@
+            <button type="submit" id="process">Add to cart</button>
+        </p>
+    </div>
+
+
+<script type="text/javascript">
+    $(function () {
+        var variationId;
+        // Document.ready -> link up remove event handler
+        $("#ddlVariations").change(function () {
+            variationId = $("input[name=selectedValue]").val($(this).val());
+        });
+
+        $("#process").onclick(function () {    
+            //$("input[name=selectedValue]").val($(this).val());
+            // Get the id from the link
+            var variation = { id: 1 , variationId: variationId }
+
+            // Perform the ajax post
+            $.ajax({
+                type: "POST",
+                url: "/Store/GetProductPrice",
+                data: variation
+                //success: function(data) {
+                    //$('#price h2').text(data).append('<small class="text-muted">Incl.Tax</small>');
+                //}
+                        
+            });
+            alert(variationId);
+        });
+
+    });
+</script>

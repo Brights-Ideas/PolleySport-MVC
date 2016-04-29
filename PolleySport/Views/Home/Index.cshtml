@@ -1,45 +1,86 @@
-﻿@{
+﻿@model List<PolleySport.Models.ProductModel>
+@{
     ViewBag.Title = "Home Page";
 }
+
 @section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
+<div class="row">
+    <div class="col-md-9">
+        <div class="jumbotron">
+                <hgroup class="title">
+                    <h1>@ViewBag.Title.</h1>
+                    <h2>@ViewBag.Message</h2>
+                </hgroup>
+                <p>
+                    To learn more about ASP.NET MVC visit
+                    <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+                    The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
+                    If you have any questions about ASP.NET MVC visit
+                    <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
+                </p>
         </div>
-    </section>
+    </div>
+    <!-- /col-md-9-->
+    <div class="col-md-3">
+        <div class="well sidebar-nav">
+            <ul class="nav">
+                <li><strong>Top selling products</strong></li>
+                <li><a href="/electronics/Smartphone/" title="Smartphone">Smartphone</a></li>
+                <li><a href="/clothing/T-Shirt/" title="T-Shirt">T-Shirt</a></li>
+                <li><a href="/electronics/OLED-Television/" title="OLED Television">OLED Television</a></li>
+            </ul>
+
+
+            <ul class="nav">
+                <li><strong>Random Categories</strong></li>
+                <li><a href="/clothing/" title="Clothing"><span class="badge pull-right">2</span> Clothing</a> </li>
+                <li><a href="/electronics/" title="Electronics"><span class="badge pull-right">3</span> Electronics</a> </li>
+                <li><a href="/shoes/" title="Shoes"><span class="badge pull-right">2</span> Shoes</a> </li>
+            </ul>
+
+        </div>
+    </div>
+    <!-- /col-md-3 -->
+</div>
+<!-- /row -->
 }
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
+<div class="page-header">
+    <h1>Newest Products <small>take a look at the products we just added to our store!</small></h1>
+</div>
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-sm-6 col-md-3 col-xs-12">
+            <div class="thumbnail">
+                <a href="/electronics/Smartphone/" title="Smartphone">
+                    <img height="200" data-src="" alt="Image" src="@product.ImageURL" style="height: 200px; width: 100%; display: block;">
+                </a>
+                <div class="caption">
+                    <span class="label label-success">New</span>
+                    <span class="label label-default">@product.SubCategory.SubCategoryName</span>
+                    <h3>@product.Name</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-7 col-xs-7">
+                        </div>
+                        <!-- /col-md-7 -->
+                        <div class="col-sm-5 col-xs-5 text-right">
+                            <p>
+                                <a href="@Url.Action("Details", "Store", new { id = product.ProductId })" class="btn btn-info">
+                                    <span>Details</span> </a>
+                                @*<a href="/electronics/Smartphone/" title="Smartphone" class="btn btn-info">Details</a>*@
+                            </p>
+                        </div>
+                        <!-- /col-md-3 -->
+                    </div>
+                    <!-- /row -->
+                </div>
+                <!-- /caption -->
+            </div>
+            <!-- /thumbnail -->
+        </div>
+    }
+    <!-- /col-sm-6 col-md-3 -->
+</div>
