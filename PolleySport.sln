@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolleySport", "PolleySport\PolleySport.csproj", "{8C073BB5-3BC2-46C0-A6CA-FCB1B7017EAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolleySport.Tests", "PolleySport.Tests\PolleySport.Tests.csproj", "{57727ECB-D571-417B-B2D0-F59CD445873D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C073BB5-3BC2-46C0-A6CA-FCB1B7017EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C073BB5-3BC2-46C0-A6CA-FCB1B7017EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C073BB5-3BC2-46C0-A6CA-FCB1B7017EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C073BB5-3BC2-46C0-A6CA-FCB1B7017EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57727ECB-D571-417B-B2D0-F59CD445873D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57727ECB-D571-417B-B2D0-F59CD445873D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57727ECB-D571-417B-B2D0-F59CD445873D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57727ECB-D571-417B-B2D0-F59CD445873D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
