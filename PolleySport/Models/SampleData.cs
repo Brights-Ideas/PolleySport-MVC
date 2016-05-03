@@ -51,6 +51,47 @@ namespace PolleySport.Models
 
             };
 
+            var productAttributes = new List<ProductAttributesModel>
+            {
+                new ProductAttributesModel {
+                    //Name = "",
+                    Value = "165/65R13",
+                    Price = 81M,
+                    ProductId = 1
+                },
+                new ProductAttributesModel {
+                    //Name = "",
+                    Value = "185/70R13",
+                    Price = 90M,
+                    ProductId = 1
+                },
+                new ProductAttributesModel {
+                    //Name = "",
+                    Value = "175/65R14",
+                    Price = 92M,
+                    ProductId = 1
+                },
+                new ProductAttributesModel {
+                    //Name = "",
+                    Value = "185/60R15",
+                    Price = 99M,
+                    ProductId = 1
+                },
+                new ProductAttributesModel {
+                    //Name = "",
+                    Value = "185/65R15",
+                    Price = 104M,
+                    ProductId = 1
+                },
+                new ProductAttributesModel {
+                    //Name = "",
+                    Value = "195/65R15",
+                    Price = 113M,
+                    ProductId = 1
+                }
+            
+            };
+
             new List<ProductModel>
             {
                 new ProductModel
@@ -63,7 +104,8 @@ namespace PolleySport.Models
                     Stock = 9,
                     Category = categories.Single(c => c.CategoryName == "Yokohama Tyres"),
                     //SubCategoryId = 3, Trans/Suspension
-                    SubCategory = subCategories.Single(s => s.SubCategoryName == "Rally Tyres")
+                    SubCategory = subCategories.Single(s => s.SubCategoryName == "Rally Tyres"),
+                    Attributes = productAttributes.Where(pa => pa.ProductId == 1).ToList()
                 },
                 new ProductModel
                 {

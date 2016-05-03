@@ -12,6 +12,7 @@ namespace PolleySport.Models
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<CategoryModel> Categorys { get; set; }
         public DbSet<SubCategoryModel> SubCategories { get; set; }
+        public DbSet<ProductAttributesModel> Attributes { get; set; }
         //public DbSet<Artist> Artists { get; set; }
         //public DbSet<Cart> Carts { get; set; }
         //public DbSet<Order> Orders { get; set; }

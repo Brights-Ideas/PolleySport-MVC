@@ -202,6 +202,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\PolleySportEntities.cs" />
+    <Compile Include="Models\ProductAttributesModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\SampleData.cs" />
     <Compile Include="Models\StoreController.cs" />

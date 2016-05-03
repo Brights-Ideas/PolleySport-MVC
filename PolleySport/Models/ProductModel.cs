@@ -28,5 +28,6 @@ namespace PolleySport.Models
 
         public virtual CategoryModel Category { get; set; }
         public virtual SubCategoryModel SubCategory { get; set; }
+        public virtual List<ProductAttributesModel> Attributes {get; set;}
     }
 }
