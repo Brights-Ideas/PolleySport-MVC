@@ -12,7 +12,7 @@
         new ListItem { Text = "£1.72", Value="1.72M" },
         new ListItem { Text = "£0.59", Value="0.59M" }
     };
-    
+
 }
 
 <div class="col-sm-4">
@@ -20,14 +20,15 @@
 
         <div class="col-sm-12 text-center">
             <div class="thumbnail">
-            <img src="@(string.Format("/{0}", Model.ImageURL))" alt="Image"> </div>
+                <img src="@(string.Format("/{0}", Model.ImageURL))" alt="Image">
+            </div>
         </div>
         @* TODO: look at adding multiple images <div class="col-sm-6 col-md-4 col-xs-4"> <a href="#" class="thumbnail"> <img src="" alt="thumb"> </a> </div>
-        <div class="col-sm-6 col-md-4 col-xs-4"> <a href="#" class="thumbnail"> <img src="" alt="thumb"> </a> </div>
-        <div class="col-sm-6 col-md-4 col-xs-4"> <a href="#" class="thumbnail"> <img src="" alt="thumb"> </a> </div>*@
+            <div class="col-sm-6 col-md-4 col-xs-4"> <a href="#" class="thumbnail"> <img src="" alt="thumb"> </a> </div>
+            <div class="col-sm-6 col-md-4 col-xs-4"> <a href="#" class="thumbnail"> <img src="" alt="thumb"> </a> </div>*@
     </div>
 </div>
- <div class="col-sm-8">
+<div class="col-sm-8">
     <h1>@Model.Name</h1>
     <div class="row">
 
@@ -45,27 +46,32 @@
                     <form action="/electronics/OLED-Television" enctype="multipart/form-data" method="post">
                         <input name="productId" value="1209" type="hidden">
                         <input name="action" value="add" type="hidden">
-                        <h2>@String.Format("{0:F}", Model.Price) <small class="text-muted">Incl.Tax</small></h2>
+                        <div id="price">
+                            <h2>@String.Format("{0:F}", Model.Price) <small class="text-muted">Incl.Tax</small></h2>
+                        </div>
                         <label for="variantinstall">install</label>
-                        @Html.DropDownListFor(m => m.Price, new SelectList(Model.Attributes, "Price", "Value"),
+                        @Html.DropDownListFor(m => m.Price, new SelectList(Model.Attributes, "AttributeId", "Value"),
                                  new { id = "ddlVariations", @class = "form-control" })
-                        @Html.DropDownList("-- Insert Money --",
+                        @*Html.DropDownList("-- Insert Money --",
                         new SelectList(listItems, "Value", "Text"),
-                        new { @id = "ddlVariations", @class = "form-control" })
-                        
+                        new { @id = "ddlVariations", @class = "form-control" })*@
+
                         <label for="quantity">Quantity</label>
                         <input min="1" max="99" id="quantity" name="quantity" value="1" class="form-control" type="number">
                         <br>
-                        <button type="submit" class="btn btn-success btn-lg"> 
-                        <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;Add to Cart! </button>
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;Add to Cart!
+                        </button>
                         <input name="uformpostroutevals" value="" type="hidden">
                     </form>
                 </div>
             </div>
         </div>
         <div class="col-sm-12 col-md-8 col-md-pull-4">
-            <p class="lead">Fusce orci diam, laoreet eu mauris id, tempor dictum velit. Mauris sed lectus pulvinar, 
-            placerat lectus vitae, rhoncus lorem.</p>
+            <p class="lead">
+                Fusce orci diam, laoreet eu mauris id, tempor dictum velit. Mauris sed lectus pulvinar,
+                placerat lectus vitae, rhoncus lorem.
+            </p>
             @Model.Description
         </div>
 
@@ -73,48 +79,43 @@
 </div>
 
 @*@using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post, new { id = Model.AlbumId, variationId =  }))
-{
-    *@<div id="album-details">
-        <p>
-            
-            @*Model.Genre.Name*@
-            @*Html.DropDownListFor(m => m.Price, new SelectList(Model.Variations, "VariationId", "Text"), new { id ="ddlVariations"})*@
-            
-            <input type="hidden" name="selectedValue" id="selectedValue" value="unassigned"/>
-        </p>
-        
-        <p class="button">
-            @*   @Html.ActionLink("Add to cart", "AddToCart", 
-        "ShoppingCart", new { id = Model.AlbumId, variationId =  @Html.Hidden("selectedValue")}, "")*@
-            <button type="submit" id="process">Add to cart</button>
-        </p>
-    </div>
+    {
+*@<div id="album-details">
+    <p>
 
+        @*Model.Genre.Name*@
+        @*Html.DropDownListFor(m => m.Price, new SelectList(Model.Variations, "VariationId", "Text"), new { id ="ddlVariations"})*@
 
+        <input type="hidden" name="selectedValue" id="selectedValue" value="unassigned" />
+    </p>
+
+    <p class="button">
+        @*   @Html.ActionLink("Add to cart", "AddToCart",
+            "ShoppingCart", new { id = Model.AlbumId, variationId =  @Html.Hidden("selectedValue")}, "")*@
+        <button type="submit" id="process">Add to cart</button>
+    </p>
+</div>
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        var variationId;
         // Document.ready -> link up remove event handler
+
         $("#ddlVariations").change(function () {
-            variationId = $("input[name=selectedValue]").val($(this).val());
-        });
-
-        $("#process").onclick(function () {    
-            //$("input[name=selectedValue]").val($(this).val());
             // Get the id from the link
-            var variation = { id: 1 , variationId: variationId }
-
+            alert($("#ddlVariations").val());
+            //var variation = { id: Model.ProductId , variationId: $('#ddlVariations').val() }
+            var variationId = { variationId: $('#ddlVariations').val() }
             // Perform the ajax post
             $.ajax({
                 type: "POST",
                 url: "/Store/GetProductPrice",
-                data: variation
-                //success: function(data) {
-                    //$('#price h2').text(data).append('<small class="text-muted">Incl.Tax</small>');
-                //}
-                        
+                data: variationId,
+                success: function(data) {
+                    $('#price h2').text(data).append('<small class="text-muted">Incl.Tax</small>');
+                }
             });
-            alert(variationId);
+
         });
 
     });
