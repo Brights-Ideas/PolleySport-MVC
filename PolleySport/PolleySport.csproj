@@ -195,19 +195,33 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\StoreManagerController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\Order.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\OrderDetail.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\PolleySportEntities.cs" />
     <Compile Include="Models\ProductAttributesModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\SampleData.cs" />
-    <Compile Include="Models\StoreController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Models\ShoppingCart.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\SubCategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

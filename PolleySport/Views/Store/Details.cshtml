@@ -20,11 +20,11 @@
 
         <div class="col-sm-12 text-center">
             <div class="thumbnail">
-            <img src="@Model.ImageURL" alt="Image"> </div>
+            <img src="@(string.Format("/{0}", Model.ImageURL))" alt="Image"> </div>
         </div>
+        @* TODO: look at adding multiple images <div class="col-sm-6 col-md-4 col-xs-4"> <a href="#" class="thumbnail"> <img src="" alt="thumb"> </a> </div>
         <div class="col-sm-6 col-md-4 col-xs-4"> <a href="#" class="thumbnail"> <img src="" alt="thumb"> </a> </div>
-        <div class="col-sm-6 col-md-4 col-xs-4"> <a href="#" class="thumbnail"> <img src="" alt="thumb"> </a> </div>
-        <div class="col-sm-6 col-md-4 col-xs-4"> <a href="#" class="thumbnail"> <img src="" alt="thumb"> </a> </div>
+        <div class="col-sm-6 col-md-4 col-xs-4"> <a href="#" class="thumbnail"> <img src="" alt="thumb"> </a> </div>*@
     </div>
 </div>
  <div class="col-sm-8">

@@ -14,9 +14,9 @@ namespace PolleySport.Models
         public DbSet<SubCategoryModel> SubCategories { get; set; }
         public DbSet<ProductAttributesModel> Attributes { get; set; }
         //public DbSet<Artist> Artists { get; set; }
-        //public DbSet<Cart> Carts { get; set; }
+        public DbSet<Cart> Carts { get; set; }
         //public DbSet<Order> Orders { get; set; }
-        //public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
         //public DbSet<Variation> Variations { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
