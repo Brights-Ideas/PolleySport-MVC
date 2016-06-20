@@ -27,9 +27,9 @@ namespace PolleySport.Models
             return GetCart(controller.HttpContext);
         }
 
-        public void AddToCart(ProductModel product)
+        public void AddToCart(ProductModel product, decimal varaitionPrice)
         {
-            // Get the matching cart and album instances
+            // Get the matching cart and product instances
             var cartItem = storeDB.Carts.SingleOrDefault(c => c.CartId == ShoppingCartId
                             && c.ProductId == product.ProductId);
 
@@ -41,9 +41,10 @@ namespace PolleySport.Models
                     ProductId = product.ProductId,
                     CartId = ShoppingCartId,
                     Count = 1,
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    ProductAttributesPrice = varaitionPrice
                 };
-
+                
                 storeDB.Carts.Add(cartItem);
             }
             else
@@ -120,7 +121,7 @@ cart => cart.CartId == ShoppingCartId
             // sum all album price totals to get the cart total
             decimal? total = (from cartItems in storeDB.Carts
                               where cartItems.CartId == ShoppingCartId
-                              select (int?)cartItems.Count * cartItems.Product.Price).Sum();
+                              select (int?)cartItems.Count * cartItems.ProductAttributesPrice != 0 ? cartItems.ProductAttributesPrice : cartItems.Product.Price).Sum();
             return total ?? decimal.Zero;
         }
 

@@ -28,7 +28,7 @@ namespace PolleySport.Models
             // Retrieve Genre and its Associated Albums from database
             //var genreModel = storeDB.Categorys.Include("Albums")
             //.Single(g => g.CategoryName == genre);
-            var genreModel = storeDB.SubCategories.Include("Albums")
+            var genreModel = storeDB.SubCategories.Include("Products")
                 .Single(g => g.SubCategoryName == subGenre);
 
             return View(genreModel);
@@ -42,6 +42,13 @@ namespace PolleySport.Models
             var product = storeDB.Products.Find(id);
 
             return View(product);
+        }
+
+        public decimal GetProductPrice(int variationId)
+        {
+            var varia = storeDB.Attributes.Find(variationId);
+
+            return varia.Price;
         }
 
         //

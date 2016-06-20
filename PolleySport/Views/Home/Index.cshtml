@@ -56,11 +56,11 @@
     {
         <div class="col-sm-6 col-md-3 col-xs-12">
             <div class="thumbnail">
-                <a href="/electronics/Smartphone/" title="Smartphone">
-                    <img height="200" data-src="" alt="Image" src="@product.ImageURL" style="height: 200px; width: 100%; display: block;">
+                <a href="/electronics/Smartphone/" title="@product.Name">
+                    <img height="200" alt="Image" src="@(string.Format("/{0}", product.ImageURL))" style="height: 200px; width: 100%; display: block;">
                 </a>
                 <div class="caption">
-                    <span class="label label-success">New</span>
+                    <span class="label label-success">@product.Category.CategoryName</span>
                     <span class="label label-default">@product.SubCategory.SubCategoryName</span>
                     <h3>@product.Name</h3>
                     <hr>
