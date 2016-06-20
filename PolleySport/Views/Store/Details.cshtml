@@ -43,15 +43,21 @@
                 </div>
                 <div class="panel-body">
 
-                    <form action="/electronics/OLED-Television" enctype="multipart/form-data" method="post">
-                        <input name="productId" value="1209" type="hidden">
+                    @using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post, null))
+                    {
+                    @*<form action="/electronics/OLED-Television" enctype="multipart/form-data" method="post">*@
+                        <input name="id" value="@Model.ProductId" type="hidden">
+                        <input name="variationPrice" value="0" type="hidden" />
                         <input name="action" value="add" type="hidden">
                         <div id="price">
                             <h2>@String.Format("{0:F}", Model.Price) <small class="text-muted">Incl.Tax</small></h2>
                         </div>
-                        <label for="variantinstall">install</label>
-                        @Html.DropDownListFor(m => m.Price, new SelectList(Model.Attributes, "AttributeId", "Value"),
+                        if(Model.Attributes.Any())
+                        { 
+                            <label for="variantinstall">install</label>
+                            @Html.DropDownListFor(m => m.Price, new SelectList(Model.Attributes, "AttributeId", "Value"),
                                  new { id = "ddlVariations", @class = "form-control" })
+                        }
                         @*Html.DropDownList("-- Insert Money --",
                         new SelectList(listItems, "Value", "Text"),
                         new { @id = "ddlVariations", @class = "form-control" })*@
@@ -63,7 +69,9 @@
                             <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;Add to Cart!
                         </button>
                         <input name="uformpostroutevals" value="" type="hidden">
-                    </form>
+                    }
+                    
+                    @*</form>*@
                 </div>
             </div>
         </div>
@@ -100,10 +108,8 @@
 <script type="text/javascript">
     $(function () {
         // Document.ready -> link up remove event handler
-
         $("#ddlVariations").change(function () {
             // Get the id from the link
-            alert($("#ddlVariations").val());
             //var variation = { id: Model.ProductId , variationId: $('#ddlVariations').val() }
             var variationId = { variationId: $('#ddlVariations').val() }
             // Perform the ajax post
@@ -111,7 +117,8 @@
                 type: "POST",
                 url: "/Store/GetProductPrice",
                 data: variationId,
-                success: function(data) {
+                success: function (data) {
+                    $('[name=variationPrice]').val(data);
                     $('#price h2').text(data).append('<small class="text-muted">Incl.Tax</small>');
                 }
             });

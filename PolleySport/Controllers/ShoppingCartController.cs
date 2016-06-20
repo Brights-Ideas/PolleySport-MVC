@@ -30,7 +30,7 @@ namespace PolleySport.Controllers
         //
         // GET: /Store/AddToCart/5
 
-        public ActionResult AddToCart(int id)
+        public ActionResult AddToCart(int id, decimal variationPrice)
         {
 
             // Retrieve the album from the database
@@ -40,8 +40,15 @@ namespace PolleySport.Controllers
             // Add it to the shopping cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            cart.AddToCart(addedProduct);
-
+            if (variationPrice != 0)
+            {
+                //addedProduct.Price = variationPrice;
+                cart.AddToCart(addedProduct, variationPrice);
+            }
+            else
+            {
+                cart.AddToCart(addedProduct, 0);
+            }
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");
         }
