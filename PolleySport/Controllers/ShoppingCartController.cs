@@ -20,7 +20,8 @@ namespace PolleySport.Controllers
             var viewModel = new ShoppingCartViewModel
             {
                 CartItems = cart.GetCartItems(),
-                CartTotal = cart.GetTotal()
+                CartTotal = cart.GetTotal(),
+                CartShippingTotal = cart.GetShippingCosts()
             };
 
             // Return the view
@@ -75,6 +76,7 @@ namespace PolleySport.Controllers
                 Message = Server.HtmlEncode(productName) +
                     " has been removed from your shopping cart.",
                 CartTotal = cart.GetTotal(),
+                CartShippingTotal = cart.GetShippingCosts(),
                 CartCount = cart.GetCount(),
                 ItemCount = itemCount,
                 DeleteId = id

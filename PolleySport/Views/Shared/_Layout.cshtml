@@ -21,9 +21,9 @@
                     </button>
                     <a class="navbar-brand" href="#">Bootstrap theme</a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
+                <div id="navbar" class="navbar-collapse collapse navbar-left">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active">@Html.ActionLink("Home","Index", "Home")</li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                         <li class="dropdown">
@@ -40,6 +40,24 @@
                         </li>
                     </ul>
                 </div><!--/.nav-collapse -->
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav navbar-right list-inline">
+                        <li class="clearfix visible-xs"></li>
+                        @*<li class="text-center">
+
+                            <a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a>
+
+                        </li>*@
+                        <li class="text-center">
+                            <a href="/basket">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                                <span class="grandtotalvalue">€ 6.550,00</span>
+                                <span class="badge ordertotalquantity">1</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div class="container" role="main">
@@ -48,7 +66,7 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - My Vending Machine Simulator App</p>
+                <p>&copy; @DateTime.Now.Year - Polley Sport MVC Web App</p>
             </footer>
         </div>
 

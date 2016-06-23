@@ -7,5 +7,6 @@ namespace PolleySport.ViewModels
     {
         public List<Cart> CartItems { get; set; }
         public decimal CartTotal { get; set; }
+        public decimal CartShippingTotal { get; set; }
     }
 }

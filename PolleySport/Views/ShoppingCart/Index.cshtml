@@ -23,7 +23,7 @@
                             $('#item-count-' + data.DeleteId).text(data.ItemCount);
                         }
 
-                        $('#cart-total').text(data.CartTotal);
+                        $('#cart-total h3').text(data.CartTotal);
                         $('#update-message').text(data.Message);
                         $('#cart-status').text('Cart (' + data.CartCount + ')');
                     });
@@ -80,7 +80,7 @@
 
         @foreach (var item in Model.CartItems)
         {
-            <div class="row orderline orderline-body" id="@item.RecordId">
+            <div class="row orderline orderline-body" id="row-@item.RecordId">
 
                 <div class="col-sm-4">
                     <h4>@Html.ActionLink(item.Product.Name, "Details", "Store", new { id = item.ProductId }, null)</h4>

@@ -60,9 +60,7 @@ namespace PolleySport.Models
         public int RemoveFromCart(int id)
         {
             // Get the cart
-            var cartItem = storeDB.Carts.Single(
-cart => cart.CartId == ShoppingCartId
-&& cart.RecordId == id);
+            var cartItem = storeDB.Carts.Single(cart => cart.CartId == ShoppingCartId && cart.RecordId == id);
 
             int itemCount = 0;
 
@@ -121,8 +119,38 @@ cart => cart.CartId == ShoppingCartId
             // sum all album price totals to get the cart total
             decimal? total = (from cartItems in storeDB.Carts
                               where cartItems.CartId == ShoppingCartId
-                              select (int?)cartItems.Count * cartItems.ProductAttributesPrice != 0 ? cartItems.ProductAttributesPrice : cartItems.Product.Price).Sum();
+                              select (int?)cartItems.Count * cartItems.Product.Price).Sum();
             return total ?? decimal.Zero;
+        }
+
+        /// <summary>
+        /// Tyre shipping is £10.42 for up to 4 tyres then an additional £1 after that
+        /// </summary>
+        /// <returns>Tyre shipping/delivery costs</returns>
+        public decimal GetShippingCosts()
+        {
+            //decimal ShippingCost = 0;
+            //var cart = ShoppingCart.GetInstance().Items.ToList();
+            decimal? shippingCost = (from cartItems in storeDB.Carts
+                                    where cartItems.CartId == ShoppingCartId
+                                    select (int?) cartItems.Count).Sum();
+            return shippingCost ?? decimal.Zero;
+
+            //if (GetCartItems().Count > 0)
+            //{
+                
+            //}
+            //foreach (CartItem item in Items)
+            //{
+            //    // if (item.Quantity > 1)
+            //    //{
+            //    ShippingCost += item.Quantity;
+            //    //  }
+            //}
+            //if (cart.Count > 0)
+            //    return ShippingCost + cart[0].ShippingPrice - 1;
+            //else
+            //    return ShippingCost;
         }
 
         public int CreateOrder(Order order)

@@ -3,9 +3,9 @@ using System.Linq;
 using System.Web.Mvc;
 using PolleySport.Models;
 
-namespace MvcMusicStore.Controllers
+namespace PolleySport.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class CheckoutController : Controller
     {
         PolleySportEntities storeDB = new PolleySportEntities();
