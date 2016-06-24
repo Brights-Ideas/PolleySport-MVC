@@ -6,6 +6,7 @@ using PolleySport.Models;
 namespace PolleySport.Controllers
 {
     //[Authorize]
+    [AllowAnonymous]
     public class CheckoutController : Controller
     {
         PolleySportEntities storeDB = new PolleySportEntities();
