@@ -4,14 +4,14 @@
 @{
     ViewBag.Title = "Product - " + Model.Name;
 
-    var listItems = new List<ListItem>
-    {
-        new ListItem { Text = "£2", Value="2.00M" },
-        new ListItem { Text = "£5", Value="5.00M" },
-        new ListItem { Text = "£1.75", Value="1.75M" },
-        new ListItem { Text = "£1.72", Value="1.72M" },
-        new ListItem { Text = "£0.59", Value="0.59M" }
-    };
+    //var listItems = new List<ListItem>
+    //{
+    //    new ListItem { Text = "£2", Value="2.00M" },
+    //    new ListItem { Text = "£5", Value="5.00M" },
+    //    new ListItem { Text = "£1.75", Value="1.75M" },
+    //    new ListItem { Text = "£1.72", Value="1.72M" },
+    //    new ListItem { Text = "£0.59", Value="0.59M" }
+    //};
 
 }
 
@@ -45,12 +45,11 @@
 
                     @using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post, null))
                     {
-                    @*<form action="/electronics/OLED-Television" enctype="multipart/form-data" method="post">*@
                         <input name="id" value="@Model.ProductId" type="hidden">
                         <input name="variationPrice" value="0" type="hidden" />
                         <input name="action" value="add" type="hidden">
                         <div id="price">
-                            <h2>@String.Format("{0:F}", Model.Price) <small class="text-muted">Incl.Tax</small></h2>
+                            <h2>@String.Format("{0:C}", Model.Price) <small class="text-muted">Incl.Tax</small></h2>
                         </div>
                         if(Model.Attributes.Any())
                         { 
@@ -71,7 +70,6 @@
                         <input name="uformpostroutevals" value="" type="hidden">
                     }
                     
-                    @*</form>*@
                 </div>
             </div>
         </div>
@@ -86,24 +84,7 @@
     </div>
 </div>
 
-@*@using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post, new { id = Model.AlbumId, variationId =  }))
-    {
-*@<div id="album-details">
-    <p>
-
-        @*Model.Genre.Name*@
-        @*Html.DropDownListFor(m => m.Price, new SelectList(Model.Variations, "VariationId", "Text"), new { id ="ddlVariations"})*@
-
-        <input type="hidden" name="selectedValue" id="selectedValue" value="unassigned" />
-    </p>
-
-    <p class="button">
-        @*   @Html.ActionLink("Add to cart", "AddToCart",
-            "ShoppingCart", new { id = Model.AlbumId, variationId =  @Html.Hidden("selectedValue")}, "")*@
-        <button type="submit" id="process">Add to cart</button>
-    </p>
-</div>
-
+@*@using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post, new { id = Model.AlbumId, variationId =  })){*@
 <script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
     $(function () {

@@ -22,6 +22,8 @@ namespace PolleySport.Models
         
         public int Stock { get; set; }
 
+        public decimal ShippingCost { get; set; }
+
         public int CategoryId { get; set; }
 
         //public int SubCategoryId { get; set; }

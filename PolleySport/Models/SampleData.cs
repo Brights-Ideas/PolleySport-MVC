@@ -102,6 +102,7 @@ namespace PolleySport.Models
                     Price = 81.00M,
                     ImageURL = "ProductImages/a035 (200 x 200).jpg",
                     Stock = 9,
+                    ShippingCost = 12.50M,
                     Category = categories.Single(c => c.CategoryName == "Yokohama Tyres"),
                     //SubCategoryId = 3, Trans/Suspension
                     SubCategory = subCategories.Single(s => s.SubCategoryName == "Rally Tyres"),
@@ -115,6 +116,7 @@ namespace PolleySport.Models
                     Price = 162.00M,
                     ImageURL = "ProductImages/a006t (200 x 200).jpg",
                     Stock = 10,
+                    ShippingCost = 10.42M,
                     Category = categories.Single(c => c.CategoryName == "Yokohama Tyres"),
                     //SubCategoryId = 3,
                     SubCategory = subCategories.Single(s => s.SubCategoryName == "Rally Tyres")

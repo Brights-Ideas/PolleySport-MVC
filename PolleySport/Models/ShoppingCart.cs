@@ -129,28 +129,22 @@ namespace PolleySport.Models
         /// <returns>Tyre shipping/delivery costs</returns>
         public decimal GetShippingCosts()
         {
-            //decimal ShippingCost = 0;
-            //var cart = ShoppingCart.GetInstance().Items.ToList();
-            decimal? shippingCost = (from cartItems in storeDB.Carts
-                                    where cartItems.CartId == ShoppingCartId
-                                    select (int?) cartItems.Count).Sum();
-            return shippingCost ?? decimal.Zero;
+            decimal? shippingCost = decimal.Zero;
 
-            //if (GetCartItems().Count > 0)
-            //{
-                
-            //}
-            //foreach (CartItem item in Items)
-            //{
-            //    // if (item.Quantity > 1)
-            //    //{
-            //    ShippingCost += item.Quantity;
-            //    //  }
-            //}
-            //if (cart.Count > 0)
-            //    return ShippingCost + cart[0].ShippingPrice - 1;
-            //else
-            //    return ShippingCost;
+            if (GetCartItems().Count == 1)
+            {
+                shippingCost = (from cartItems in storeDB.Carts
+                                where cartItems.CartId == ShoppingCartId
+                                select (int?)cartItems.Product.ShippingCost).Sum();
+            }
+            else
+            {
+                shippingCost = (from cartItems in storeDB.Carts
+                                where cartItems.CartId == ShoppingCartId
+                                select cartItems.Product.ShippingCost + cartItems.Count -1).Sum();
+            }
+            return shippingCost ?? decimal.Zero;
+ 
         }
 
         public int CreateOrder(Order order)

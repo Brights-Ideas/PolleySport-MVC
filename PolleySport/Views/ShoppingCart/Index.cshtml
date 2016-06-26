@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-sm-2 col-xs-6">
                     <strong class="visible-xs">Price</strong>
-                    @(item.ProductAttributesPrice != 0 ? item.ProductAttributesPrice : item.Product.Price)
+                    @String.Format("{0:C}", item.ProductAttributesPrice != 0 ? item.ProductAttributesPrice : item.Product.Price)
                 </div>
                 <div class="col-sm-2 col-xs-4 text-right">
 
@@ -112,7 +112,7 @@
                     <hr>
                     Orderline Total:
                 </span>
-                <strong class="orderlinetotalamount">€ 6.550,00</strong>
+                <strong class="orderlinetotalamount">@String.Format("{0:C}", item.ProductAttributesPrice != 0 ? item.ProductAttributesPrice * item.Count : item.Product.Price * item.Count)</strong>
                 </div>
                 <div class="col-sm-2 text-right">
                     <a href="#" class="RemoveLink" data-id="@item.RecordId"><i class="glyphicon glyphicon-remove"></i></a>
@@ -130,12 +130,16 @@
             <div class="col-sm-6 col-sm-offset-2">
                 <ul class="list-group">
                     <li class="list-group-item">
+                        <span class="pull-left">Delivery</span>
+                        <h3 class="text-right">@String.Format("{0:C}", Model.CartShippingTotal)</h3>
+                    </li>
+                    <li class="list-group-item">
                         <span class="badge subtotalvalue">€ 6.550,00</span>
                         Subtotal
                     </li>
                     <li class="list-group-item">
                         <span class="pull-left">Grandtotal</span>
-                        <div id="cart-total"><h3 class="text-right grandtotalvalue">@Model.CartTotal</h3></div>
+                        <div id="cart-total"><h3 class="text-right grandtotalvalue">@String.Format("{0:C}", Model.CartTotal)</h3></div>
                     </li>
                 </ul>
                 <h2 class="text-right text-center-xs">

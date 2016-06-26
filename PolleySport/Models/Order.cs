@@ -31,13 +31,15 @@ namespace PolleySport.Models
         [StringLength(70)]
         public string Address { get; set; }
 
-        [Required(ErrorMessage = "City is required")]
-        [StringLength(40)]
-        public string City { get; set; }
 
-        [Required(ErrorMessage = "State is required")]
+
+        [Required(ErrorMessage = "County is required")]
         [StringLength(40)]
-        public string State { get; set; }
+        public string County { get; set; }
+
+        [Required(ErrorMessage = "Town is required")]
+        [StringLength(40)]
+        public string Town { get; set; }
 
         [Required(ErrorMessage = "Postal Code is required")]
         [DisplayName("Postal Code")]
