@@ -27,11 +27,16 @@ namespace PolleySport.Models
         [StringLength(160)]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Address is required")]
+        //[Required(ErrorMessage = "Address is required")]
+        //[StringLength(70)]
+        //public string Address { get; set; }
+
         [StringLength(70)]
-        public string Address { get; set; }
+        public string Address1 { get; set; }
 
+        public string Address2 { get; set; }
 
+        public string Address3 { get; set; }
 
         [Required(ErrorMessage = "County is required")]
         [StringLength(40)]
@@ -66,4 +71,30 @@ namespace PolleySport.Models
 
         public List<OrderDetail> OrderDetails { get; set; }
     }
+
+    /*The accepted payment methods for installation 295654:
+    • MasterCard Debit
+    • Maestro
+    • VISA Debit
+    • VISA Electron
+    */
+    public enum DebitCard
+    {
+        DMC,
+        MAES,
+        VISA,
+        VIED
+    };
+
+    /*Credit cards installation 1043836:
+        • Mastercard Credit
+        • JCB
+        • VISA Credit
+    */
+    public enum CreditCard
+    {
+        MSCD,
+        JCB,
+        VISD
+    };
 }

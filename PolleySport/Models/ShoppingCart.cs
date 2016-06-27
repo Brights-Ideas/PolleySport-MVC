@@ -119,7 +119,7 @@ namespace PolleySport.Models
             // sum all album price totals to get the cart total
             decimal? total = (from cartItems in storeDB.Carts
                               where cartItems.CartId == ShoppingCartId
-                              select (int?)cartItems.Count * cartItems.Product.Price).Sum();
+                              select (int?)cartItems.Count * cartItems.Product.Price + cartItems.Product.ShippingCost).Sum();
             return total ?? decimal.Zero;
         }
 

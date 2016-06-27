@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using PolleySport.Models
+@using System.Web;
+@using PolleySport.Controllers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -48,11 +51,12 @@
                             <a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a>
 
                         </li>*@
+                        <li class="text-center">@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
                         <li class="text-center">
                             <a href="/basket">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
                                 <span class="grandtotalvalue">€ 6.550,00</span>
-                                <span class="badge ordertotalquantity">1</span>
+                                <span class="badge ordertotalquantity"> 1</span>
                             </a>
 
                         </li>

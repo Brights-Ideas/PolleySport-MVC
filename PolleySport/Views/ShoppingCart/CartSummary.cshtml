@@ -1,4 +1,5 @@
-﻿@Html.ActionLink("Cart (" + ViewData["CartCount"] + ")",
+﻿@Html.ActionLink("Cart"
+                          + ViewData["CartCount"] ,
     "Index",
     "ShoppingCart",
-    new { id = "cart-status" })
+    new { id = "cart-status", @class = "glyphicon glyphicon-shopping-cart" })
