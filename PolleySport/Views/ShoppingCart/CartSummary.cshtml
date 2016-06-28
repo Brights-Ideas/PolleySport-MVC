@@ -1,5 +1,10 @@
-﻿@Html.ActionLink("Cart"
+﻿@*Html.ActionLink("Cart"
                           + ViewData["CartCount"] ,
     "Index",
     "ShoppingCart",
-    new { id = "cart-status", @class = "glyphicon glyphicon-shopping-cart" })
+    new { id = "cart-status" })*@
+<a href="/ShoppingCart/Index" id="cart-status">
+    <span class="glyphicon glyphicon-shopping-cart"></span>
+    <span class="grandtotalvalue">@String.Format("{0:C}", ViewData["CartTotal"])</span>
+    <span class="badge ordertotalquantity"> @ViewData["CartCount"] </span>
+</a>

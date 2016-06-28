@@ -24,8 +24,9 @@
                         }
 
                         $('#cart-total h3').text(data.CartTotal);
+                        $('#shipping-total h3').text(data.CartShippingTotal);
                         $('#update-message').text(data.Message);
-                        $('#cart-status').text('Cart (' + data.CartCount + ')');
+                        $('#cart-status .badge').text( data.CartCount );
                     });
             }
         });
@@ -45,13 +46,14 @@
             $('#item-count-' + data.DeleteId).text(data.ItemCount);
         }
 
-        $('#cart-total').text(data.CartTotal);
+        $('#cart-total h3').text(data.CartTotal);
+        $('#shipping-total h3').text(data.CartShippingTotal);
         $('#update-message').text(data.Message);
-        $('#cart-status').text('Cart (' + data.CartCount + ')');
+        $('#cart-status .badge').text( data.CartCount );
     }
 </script>
 <h2>
-    <em>Review</em> your cart:
+    <text>Review your cart:</text>
 </h2>
 @*<p class="button">
     @Html.ActionLink("Checkout >>", "AddressAndPayment", "Checkout")
@@ -131,7 +133,7 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <span class="pull-left">Delivery</span>
-                        <h3 class="text-right">@String.Format("{0:C}", Model.CartShippingTotal)</h3>
+                        <div id="shipping-total"><h3 class="text-right">@String.Format("{0:C}", Model.CartShippingTotal)</h3></div>
                     </li>
                     <li class="list-group-item">
                         <span class="badge subtotalvalue">€ 6.550,00</span>
@@ -144,7 +146,7 @@
                 </ul>
                 <h2 class="text-right text-center-xs">
                 @*<a class="btn btn-lg btn-success" href="/basket/customer-details.aspx">Continue to Customer Details</a>*@
-                @Html.ActionLink("Checkout >>", "AddressAndPayment", "Checkout")
+                @Html.ActionLink("Checkout >>", "AddressAndPayment", "Checkout", new { @class = "btn btn-lg btn-success" })
                 </h2>
 
             </div>

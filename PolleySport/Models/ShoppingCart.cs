@@ -141,7 +141,7 @@ namespace PolleySport.Models
             {
                 shippingCost = (from cartItems in storeDB.Carts
                                 where cartItems.CartId == ShoppingCartId
-                                select cartItems.Product.ShippingCost + cartItems.Count -1).Sum();
+                                select (int?)cartItems.Product.ShippingCost + cartItems.Count -1).Sum();
             }
             return shippingCost ?? decimal.Zero;
  

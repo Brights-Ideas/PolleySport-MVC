@@ -41,15 +41,15 @@ namespace PolleySport.Controllers
             // Add it to the shopping cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            if (variationPrice != 0)
-            {
+            //if (variationPrice != 0)
+            //{
                 //addedProduct.Price = variationPrice;
                 cart.AddToCart(addedProduct, variationPrice);
-            }
-            else
-            {
-                cart.AddToCart(addedProduct, 0);
-            }
+            //}
+            //else
+            //{
+            //    cart.AddToCart(addedProduct, 0);
+            //}
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");
         }
@@ -94,6 +94,7 @@ namespace PolleySport.Controllers
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
             ViewData["CartCount"] = cart.GetCount();
+            ViewData["CartTotal"] = cart.GetTotal();
 
             return PartialView("CartSummary");
         }
