@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -129,22 +130,44 @@ namespace PolleySport.Models
         /// <returns>Tyre shipping/delivery costs</returns>
         public decimal GetShippingCosts()
         {
-            decimal? shippingCost = decimal.Zero;
+            decimal? shippingCost;
 
             if (GetCartItems().Count == 1)
             {
                 shippingCost = (from cartItems in storeDB.Carts
                                 where cartItems.CartId == ShoppingCartId
-                                select (int?)cartItems.Product.ShippingCost).Sum();
+                                select (decimal?)cartItems.Product.ShippingCost).Sum();
             }
             else
             {
                 shippingCost = (from cartItems in storeDB.Carts
                                 where cartItems.CartId == ShoppingCartId
-                                select (int?)cartItems.Product.ShippingCost + cartItems.Count -1).Sum();
+                                select (decimal?)cartItems.Product.ShippingCost + cartItems.Count -1).Sum();
             }
             return shippingCost ?? decimal.Zero;
  
+        }
+
+        /// <returns>VAT price of all the items.</returns>
+        public decimal GetVatTotal()
+        {
+            decimal vat = decimal.Parse(ConfigurationManager.AppSettings["VatRate"]);
+
+            decimal vatTotal = (from cartItems in storeDB.Carts
+                                where cartItems.CartId == ShoppingCartId
+                                select (decimal) (cartItems.Product.Price + cartItems.Product.ShippingCost + cartItems.Count) * (vat))
+                                .Sum();
+
+            //var cart = ShoppingCart.GetCart(this.ht).GetInstance().Items;
+            //var vat = decimal.Parse(ConfigurationManager.AppSettings["VatRate"]);
+            //foreach (CartItem item in Items)
+            //{
+                //vatTotal += item.TotalPrice;// + item.ShippingPrice) * (vat);
+            //}
+            //if (cart.Count > 0)
+                //return (vatTotal + cart[0].ShippingPrice + cart.Count - 1) * (vat);
+            //else
+                return vatTotal;
         }
 
         public int CreateOrder(Order order)

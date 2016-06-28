@@ -26,6 +26,8 @@
                         $('#cart-total h3').text(data.CartTotal);
                         $('#shipping-total h3').text(data.CartShippingTotal);
                         $('#update-message').text(data.Message);
+
+                        $('#cart-status .grandtotalvalue').text(data.CartTotal);
                         $('#cart-status .badge').text( data.CartCount );
                     });
             }
@@ -49,6 +51,8 @@
         $('#cart-total h3').text(data.CartTotal);
         $('#shipping-total h3').text(data.CartShippingTotal);
         $('#update-message').text(data.Message);
+
+        $('#cart-status .grandtotalvalue').text(data.CartTotal);
         $('#cart-status .badge').text( data.CartCount );
     }
 </script>
@@ -114,7 +118,7 @@
                     <hr>
                     Orderline Total:
                 </span>
-                <strong class="orderlinetotalamount">@String.Format("{0:C}", item.ProductAttributesPrice != 0 ? item.ProductAttributesPrice * item.Count : item.Product.Price * item.Count)</strong>
+                <strong class="orderlinetotalamount">@string.Format("{0:C}", item.ProductAttributesPrice != 0 ? item.ProductAttributesPrice * item.Count : item.Product.Price * item.Count)</strong>
                 </div>
                 <div class="col-sm-2 text-right">
                     <a href="#" class="RemoveLink" data-id="@item.RecordId"><i class="glyphicon glyphicon-remove"></i></a>
@@ -133,20 +137,21 @@
                 <ul class="list-group">
                     <li class="list-group-item">
                         <span class="pull-left">Delivery</span>
-                        <div id="shipping-total"><h3 class="text-right">@String.Format("{0:C}", Model.CartShippingTotal)</h3></div>
+                        <div id="shipping-total">
+                            <h3 class="text-right">@string.Format("{0:C}", Model.CartShippingTotal)</h3>
+                        </div>
+                    </li>
+                    <li>
+                        @string.Format("{0:C}", Model.CartVatTotal)
                     </li>
                     <li class="list-group-item">
-                        <span class="badge subtotalvalue">€ 6.550,00</span>
-                        Subtotal
-                    </li>
-                    <li class="list-group-item">
-                        <span class="pull-left">Grandtotal</span>
-                        <div id="cart-total"><h3 class="text-right grandtotalvalue">@String.Format("{0:C}", Model.CartTotal)</h3></div>
+                        <span class="pull-left">Grand total</span>
+                        <div id="cart-total"><h3 class="text-right grandtotalvalue">@string.Format("{0:C}", Model.CartTotal)</h3></div>
                     </li>
                 </ul>
                 <h2 class="text-right text-center-xs">
                 @*<a class="btn btn-lg btn-success" href="/basket/customer-details.aspx">Continue to Customer Details</a>*@
-                @Html.ActionLink("Checkout >>", "AddressAndPayment", "Checkout", new { @class = "btn btn-lg btn-success" })
+                @Html.ActionLink("Checkout >>", "AddressAndPayment", "Checkout", null, new { @class = "btn btn-lg btn-success" })
                 </h2>
 
             </div>
