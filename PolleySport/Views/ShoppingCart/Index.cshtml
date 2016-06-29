@@ -141,8 +141,11 @@
                             <h3 class="text-right">@string.Format("{0:C}", Model.CartShippingTotal)</h3>
                         </div>
                     </li>
-                    <li>
-                        @string.Format("{0:C}", Model.CartVatTotal)
+                    <li class="list-group-item">
+                        <span class="pull-left">VAT</span>
+                        <div id="vat-total">
+                            <h3 class="text-right">@string.Format("{0:C}", Model.CartVatTotal)</h3>
+                        </div>
                     </li>
                     <li class="list-group-item">
                         <span class="pull-left">Grand total</span>

@@ -28,7 +28,7 @@ namespace PolleySport.Models
             return GetCart(controller.HttpContext);
         }
 
-        public void AddToCart(ProductModel product, decimal varaitionPrice)
+        public void AddToCart(ProductModel product, int quantity, decimal varaitionPrice)
         {
             // Get the matching cart and product instances
             var cartItem = storeDB.Carts.SingleOrDefault(c => c.CartId == ShoppingCartId
@@ -41,7 +41,7 @@ namespace PolleySport.Models
                 {
                     ProductId = product.ProductId,
                     CartId = ShoppingCartId,
-                    Count = 1,
+                    Count = quantity,
                     DateCreated = DateTime.Now,
                     ProductAttributesPrice = varaitionPrice
                 };
@@ -115,12 +115,26 @@ namespace PolleySport.Models
 
         public decimal GetTotal()
         {
+            decimal vat = decimal.Parse(ConfigurationManager.AppSettings["VatRate"]);
+
+            decimal? total;
             // Multiply album price by count of that album to get 
             // the current price for each of those albums in the cart
             // sum all album price totals to get the cart total
-            decimal? total = (from cartItems in storeDB.Carts
-                              where cartItems.CartId == ShoppingCartId
-                              select (int?)cartItems.Count * cartItems.Product.Price + cartItems.Product.ShippingCost).Sum();
+            if (GetCartItems().Count > 0)
+            {
+                total = (from cartItems in storeDB.Carts
+                    where cartItems.CartId == ShoppingCartId
+                    select ((int?) cartItems.Count -1 + cartItems.Product.Price + cartItems.Product.ShippingCost)*(1 + vat))
+                    .Sum();
+            }
+            else
+            {
+                total = (from cartItems in storeDB.Carts
+                         where cartItems.CartId == ShoppingCartId
+                         select (cartItems.Product.Price + cartItems.Product.ShippingCost + (int?)cartItems.Count) * (1 + vat))
+                    .Sum();
+            }
             return total ?? decimal.Zero;
         }
 
@@ -132,17 +146,17 @@ namespace PolleySport.Models
         {
             decimal? shippingCost;
 
-            if (GetCartItems().Count == 1)
+            if (GetCartItems().Count > 0)
             {
                 shippingCost = (from cartItems in storeDB.Carts
                                 where cartItems.CartId == ShoppingCartId
-                                select (decimal?)cartItems.Product.ShippingCost).Sum();
+                                select (decimal?)cartItems.Product.ShippingCost + cartItems.Count -1).Sum();
             }
             else
             {
                 shippingCost = (from cartItems in storeDB.Carts
                                 where cartItems.CartId == ShoppingCartId
-                                select (decimal?)cartItems.Product.ShippingCost + cartItems.Count -1).Sum();
+                                select (decimal?)cartItems.Product.ShippingCost * cartItems.Count).Sum();
             }
             return shippingCost ?? decimal.Zero;
  
@@ -153,11 +167,20 @@ namespace PolleySport.Models
         {
             decimal vat = decimal.Parse(ConfigurationManager.AppSettings["VatRate"]);
 
-            decimal vatTotal = (from cartItems in storeDB.Carts
-                                where cartItems.CartId == ShoppingCartId
-                                select (decimal) (cartItems.Product.Price + cartItems.Product.ShippingCost + cartItems.Count) * (vat))
-                                .Sum();
+            decimal vatTotal;
 
+            if (GetCartItems().Count > 0)
+            {
+                vatTotal = (from cartItems in storeDB.Carts
+                    where cartItems.CartId == ShoppingCartId
+                    select (decimal) ((int?)cartItems.Count -1 + cartItems.Product.Price + cartItems.Product.ShippingCost) * (vat)).Sum();
+            }
+            else
+            {
+                vatTotal = (from cartItems in storeDB.Carts
+                            where cartItems.CartId == ShoppingCartId
+                            select (decimal)(cartItems.Product.Price + cartItems.Product.ShippingCost + (int?)cartItems.Count - 1) * (vat)).Sum();
+            }
             //var cart = ShoppingCart.GetCart(this.ht).GetInstance().Items;
             //var vat = decimal.Parse(ConfigurationManager.AppSettings["VatRate"]);
             //foreach (CartItem item in Items)
@@ -167,7 +190,7 @@ namespace PolleySport.Models
             //if (cart.Count > 0)
                 //return (vatTotal + cart[0].ShippingPrice + cart.Count - 1) * (vat);
             //else
-                return vatTotal;
+            return vatTotal;
         }
 
         public int CreateOrder(Order order)

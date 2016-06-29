@@ -49,7 +49,7 @@
                         <input name="variationPrice" value="0" type="hidden" />
                         <input name="action" value="add" type="hidden">
                         <div id="price">
-                            <h2>@String.Format("{0:C}", Model.Price) <small class="text-muted">Incl.Tax</small></h2>
+                            <h2>@string.Format("{0:C}", Model.Price) <small class="text-muted">Exc.Vat</small></h2>
                         </div>
                         if(Model.Attributes.Any())
                         { 
