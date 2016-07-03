@@ -23,15 +23,17 @@ namespace PolleySport.Models
         //
         // GET: /Store/Browse?genre=Disco
 
-        public ActionResult Browse(string subGenre)// genre)
+        public ActionResult Browse(int? SubCategoryId)
         {
             // Retrieve Genre and its Associated Albums from database
+            var categoryModel = storeDB.SubCategories.Include("Products")
+                .Single(g => g.SubCategoryId == SubCategoryId);
             //var genreModel = storeDB.Categorys.Include("Albums")
             //.Single(g => g.CategoryName == genre);
-            var genreModel = storeDB.SubCategories.Include("Products")
-                .Single(g => g.SubCategoryName == subGenre);
+            //var genreModel = storeDB.SubCategories.Include("Products")
+                //.Single(g => g.SubCategoryName == subGenre);
 
-            return View(genreModel);
+            return View(categoryModel);
         }
 
         //

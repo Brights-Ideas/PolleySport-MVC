@@ -6,7 +6,7 @@ using System.Web;
 
 namespace PolleySport.Models
 {
-    public class ProductAttributesModel
+    public class ProductAttributes
     {
         [Key]
         public int AttributeId { get; set; }

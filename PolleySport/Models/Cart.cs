@@ -12,6 +12,6 @@ namespace PolleySport.Models
         public System.DateTime DateCreated { get; set; }
 
         public decimal ProductAttributesPrice { get; set; }
-        public virtual ProductModel Product { get; set; }
+        public virtual Products Product { get; set; }
     }
 }

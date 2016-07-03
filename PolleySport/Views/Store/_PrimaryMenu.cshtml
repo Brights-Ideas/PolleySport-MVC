@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PolleySport.Models.CategoryModel>
+﻿@model IEnumerable<PolleySport.Models.Category>
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -24,8 +24,8 @@
                             {
                                 <li>
                                     @Html.ActionLink(subCategory.SubCategoryName, 
-                                        "Browse", "Store", 
-                                        new { SubGenre = subCategory.SubCategoryName }, null)
+                                        "Browse", "Store",
+                                         new { SubCategoryId = subCategory.SubCategoryId }, null)
                                 </li>
                             }
                         </ul>

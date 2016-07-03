@@ -18,7 +18,9 @@ namespace PolleySport
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new SampleData());
+            Database.SetInitializer<PolleySportEntities>(new CreateDatabaseIfNotExists<PolleySportEntities>());
+            //Database.SetInitializer<PolleySportEntities>(new DropCreateDatabaseIfModelChanges<PolleySportEntities>());
+            //Database.SetInitializer(new SampleData());
 
             AreaRegistration.RegisterAllAreas();
 

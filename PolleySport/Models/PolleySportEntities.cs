@@ -9,10 +9,11 @@ namespace PolleySport.Models
 {
     public class PolleySportEntities : DbContext
     {
-        public DbSet<ProductModel> Products { get; set; }
-        public DbSet<CategoryModel> Categorys { get; set; }
-        public DbSet<SubCategoryModel> SubCategories { get; set; }
-        public DbSet<ProductAttributesModel> Attributes { get; set; }
+        //public DbSet<Product> Products { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Category> Categorys { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<ProductAttributes> Attributes { get; set; }
         //public DbSet<Artist> Artists { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Order> Orders { get; set; }

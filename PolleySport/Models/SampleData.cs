@@ -10,80 +10,80 @@ namespace PolleySport.Models
     {
         protected override void Seed(PolleySportEntities context)
         {
-            var categories = new List<CategoryModel>
+            var categories = new List<Category>
             {
-                new CategoryModel {CategoryName = "Yokohama Tyres",},
-                new CategoryModel {CategoryName = "Wheels"},
-                new CategoryModel {CategoryName = "Trans/Suspension"},
-                new CategoryModel {CategoryName = "Oval Racing Parts"},
-                new CategoryModel {CategoryName = "Car Fabrication"},
-                new CategoryModel {CategoryName = "DP Car Hire"},
-                new CategoryModel {CategoryName = "Toyo Tyres"}
+                new Category {CategoryName = "Yokohama Tyres",},
+                new Category {CategoryName = "Wheels"},
+                new Category {CategoryName = "Trans/Suspension"},
+                new Category {CategoryName = "Oval Racing Parts"},
+                new Category {CategoryName = "Car Fabrication"},
+                new Category {CategoryName = "DP Car Hire"},
+                new Category {CategoryName = "Toyo Tyres"}
             };
 
-            var subCategories = new List<SubCategoryModel>
+            var subCategories = new List<SubCategory>
             {
-                new SubCategoryModel {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Racing Tyres"},
-                new SubCategoryModel {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Road Legal Race/Track Day Tyres"},
-                new SubCategoryModel {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Rally Tyres"},
-                new SubCategoryModel {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Oval Racing Tyres"},
-                new SubCategoryModel {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "4 x 4 Off Road Tyres"},
-                new SubCategoryModel {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Van Tyres"},
-                new SubCategoryModel {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Road Legal Sports Tyres"},
-                new SubCategoryModel {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Sports Tyres - Track Use Only"},
-                new SubCategoryModel {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Race Series Tyres"},
+                new SubCategory {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Racing Tyres"},
+                new SubCategory {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Road Legal Race/Track Day Tyres"},
+                new SubCategory {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Rally Tyres"},
+                new SubCategory {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Oval Racing Tyres"},
+                new SubCategory {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "4 x 4 Off Road Tyres"},
+                new SubCategory {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Van Tyres"},
+                new SubCategory {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Road Legal Sports Tyres"},
+                new SubCategory {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Sports Tyres - Track Use Only"},
+                new SubCategory {CategoryId = 1, CategoryName = "Yokohama Tyres", SubCategoryName = "Race Series Tyres"},
 
-                new SubCategoryModel {CategoryId = 2, CategoryName = "Wheels", SubCategoryName = "Compomotive"},
-                new SubCategoryModel {CategoryId = 2, CategoryName = "Wheels", SubCategoryName = "Weller Wheels"},
+                new SubCategory {CategoryId = 2, CategoryName = "Wheels", SubCategoryName = "Compomotive"},
+                new SubCategory {CategoryId = 2, CategoryName = "Wheels", SubCategoryName = "Weller Wheels"},
 
-                new SubCategoryModel {CategoryId = 3, CategoryName = "Trans/Suspension", SubCategoryName = "Transmission"},
-                new SubCategoryModel {CategoryId = 3, CategoryName = "Trans/Suspension", SubCategoryName = "Suspension"},
+                new SubCategory {CategoryId = 3, CategoryName = "Trans/Suspension", SubCategoryName = "Transmission"},
+                new SubCategory {CategoryId = 3, CategoryName = "Trans/Suspension", SubCategoryName = "Suspension"},
 
-                new SubCategoryModel {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Engine"},
-                new SubCategoryModel {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Seats/Harnesses"},
-                new SubCategoryModel {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Steering Wheels & Components"},
-                new SubCategoryModel {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Electrical Components"},
-                new SubCategoryModel {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Body Panels"},
-                new SubCategoryModel {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Exhaust/Silencers"},
-                new SubCategoryModel {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Fuel Components"},
-                new SubCategoryModel {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Oils & Lubricants"},
-                new SubCategoryModel {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Miscellaneous"}
+                new SubCategory {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Engine"},
+                new SubCategory {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Seats/Harnesses"},
+                new SubCategory {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Steering Wheels & Components"},
+                new SubCategory {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Electrical Components"},
+                new SubCategory {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Body Panels"},
+                new SubCategory {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Exhaust/Silencers"},
+                new SubCategory {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Fuel Components"},
+                new SubCategory {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Oils & Lubricants"},
+                new SubCategory {CategoryId = 4, CategoryName = "Oval Racing Parts", SubCategoryName = "Miscellaneous"}
 
             };
 
-            var productAttributes = new List<ProductAttributesModel>
+            var productAttributes = new List<ProductAttributes>
             {
-                new ProductAttributesModel {
+                new ProductAttributes {
                     //Name = "",
                     Value = "165/65R13",
                     Price = 81M,
                     ProductId = 1
                 },
-                new ProductAttributesModel {
+                new ProductAttributes {
                     //Name = "",
                     Value = "185/70R13",
                     Price = 90M,
                     ProductId = 1
                 },
-                new ProductAttributesModel {
+                new ProductAttributes {
                     //Name = "",
                     Value = "175/65R14",
                     Price = 92M,
                     ProductId = 1
                 },
-                new ProductAttributesModel {
+                new ProductAttributes {
                     //Name = "",
                     Value = "185/60R15",
                     Price = 99M,
                     ProductId = 1
                 },
-                new ProductAttributesModel {
+                new ProductAttributes {
                     //Name = "",
                     Value = "185/65R15",
                     Price = 104M,
                     ProductId = 1
                 },
-                new ProductAttributesModel {
+                new ProductAttributes {
                     //Name = "",
                     Value = "195/65R15",
                     Price = 113M,
@@ -92,9 +92,9 @@ namespace PolleySport.Models
             
             };
 
-            new List<ProductModel>
+            new List<Products>
             {
-                new ProductModel
+                new Products
                 {
                     Name = "A035",
                     Description =
@@ -108,7 +108,7 @@ namespace PolleySport.Models
                     SubCategory = subCategories.Single(s => s.SubCategoryName == "Rally Tyres"),
                     Attributes = productAttributes.Where(pa => pa.ProductId == 1).ToList()
                 },
-                new ProductModel
+                new Products
                 {
                     Name = "A006-T",
                     Description =
@@ -121,7 +121,7 @@ namespace PolleySport.Models
                     //SubCategoryId = 3,
                     SubCategory = subCategories.Single(s => s.SubCategoryName == "Rally Tyres")
                 },
-                new ProductModel
+                new Products
                 {
                     Name = "A005",
                     Description = "Radial Slick Tyre",
@@ -132,7 +132,7 @@ namespace PolleySport.Models
                     //SubCategoryId = 1,
                     SubCategory = subCategories.Single(s => s.SubCategoryName == "Racing Tyres")
                 },
-                new ProductModel
+                new Products
                 {
                     Name = "A006",
                     Description = "Radial Wet Tyre",
@@ -143,7 +143,7 @@ namespace PolleySport.Models
                     //SubCategoryId = 1,
                     SubCategory = subCategories.Single(s => s.SubCategoryName == "Racing Tyres")
                 },
-                new ProductModel
+                new Products
                 {
                     Name = "A053",
                     Description =

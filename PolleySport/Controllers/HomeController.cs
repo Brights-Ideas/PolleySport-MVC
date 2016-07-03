@@ -19,7 +19,7 @@ namespace PolleySport.Controllers
             return View(products);
         }
 
-        private List<ProductModel> GetTopSellingProducts(int count)
+        private List<Products> GetTopSellingProducts(int count)
         {
             // Group the order details by album and return
             // the products with the highest count

@@ -28,7 +28,7 @@ namespace PolleySport.Controllers
 
         public ViewResult Details(int id)
         {
-            ProductModel product = db.Products.Find(id);
+            Products product = db.Products.Find(id);
             return View(product);
         }
 
@@ -46,7 +46,7 @@ namespace PolleySport.Controllers
         // POST: /StoreManager/Create
 
         [HttpPost]
-        public ActionResult Create(ProductModel product)
+        public ActionResult Create(Products product)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace PolleySport.Controllers
  
         public ActionResult Edit(int id)
         {
-            ProductModel product = db.Products.Find(id);
+            Products product = db.Products.Find(id);
             //ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
             //ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
             return View(product);
@@ -75,7 +75,7 @@ namespace PolleySport.Controllers
         // POST: /StoreManager/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(ProductModel product)
+        public ActionResult Edit(Products product)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace PolleySport.Controllers
  
         public ActionResult Delete(int id)
         {
-            ProductModel product = db.Products.Find(id);
+            Products product = db.Products.Find(id);
             return View(product);
         }
 
@@ -103,7 +103,7 @@ namespace PolleySport.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {            
-            ProductModel product = db.Products.Find(id);
+            Products product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");

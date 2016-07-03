@@ -7,7 +7,7 @@ using System.Web;
 
 namespace PolleySport.Models
 {
-    public class SubCategoryModel
+    public class SubCategory
     {
         [Key]
         public int SubCategoryId { get; set; }
@@ -19,6 +19,6 @@ namespace PolleySport.Models
 
         public string CategoryName { get; set; }
 
-        //public virtual List<ProductModel> Products { get; set; }
+        public virtual List<Products> Products { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace PolleySport.Models
             return GetCart(controller.HttpContext);
         }
 
-        public void AddToCart(ProductModel product, int quantity, decimal varaitionPrice)
+        public void AddToCart(Products product, int quantity, decimal varaitionPrice)
         {
             // Get the matching cart and product instances
             var cartItem = storeDB.Carts.SingleOrDefault(c => c.CartId == ShoppingCartId
